@@ -1,0 +1,333 @@
+/* ====================================================================
+   THE SPOT — coming soon page
+   Design tokens live in :root below. Change colors/fonts there and
+   they update everywhere.
+   ==================================================================== */
+
+:root {
+  /* --- Color: faded lifeguard-flag palette, deep ocean scrim --- */
+  --teal-deep:   #1E3733;  /* dominant dark scrim / background */
+  --teal-ink:    #9A5D2D;  /* near-black text on light surfaces */
+  --foam:        #F9DCCB;  /* cream/foam — primary text on dark */
+  --sand:        #F8EC88;  /* secondary text, hairlines */
+  --flag-red:    #E68DFO;  /* faded flag red — accent */
+  --flag-gold:   #72ACF8;  /* faded flag gold — accent, focus ring */
+
+  /* --- Type: 3 roles, used with restraint --- */
+  --font-display: "Fraunces", Georgia, serif;       /* headline only */
+  --font-body:    "PT Serif", Georgia, serif;       /* tagline */
+  --font-utility: "Oswald", "Arial Narrow", sans-serif; /* labels, buttons */
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------- */
+/* Reset                                                             */
+/* ---------------------------------------------------------------- */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--teal-deep);
+  color: var(--foam);
+  font-family: var(--font-utility);
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Visible, on-brand focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--flag-gold);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- */
+/* Background layers: video, vignette scrim, grain texture           */
+/* ---------------------------------------------------------------- */
+
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  z-index: -3;
+  pointer-events: none; /* it's decoration — taps must never land on it */
+  /* Warm, slightly faded "old surf reel" treatment */
+  filter: saturate(0.75) sepia(0.18) contrast(1.05) brightness(0.92);
+}
+
+/* Shown instead of the video before a file is added, or when the
+   person prefers reduced motion / reduced data */
+body.no-video .bg-video { display: none; }
+body.no-video {
+  background: linear-gradient(160deg, #234540 0%, #1A332E 55%, #0F2421 100%);
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 30%, rgba(10, 22, 20, 0.6) 100%),
+    linear-gradient(to bottom, rgba(10, 22, 20, 0.3) 0%, rgba(10, 22, 20, 0.15) 35%, rgba(10, 22, 20, 0.8) 100%);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero content                                                      */
+/* ---------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: bottom;
+  text-align: center;
+  padding: 8vh 6vw calc(4vh + env(safe-area-inset-bottom)) 6vw;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  letter-spacing: 0.18em;
+  color: var(--sand);
+  animation: rise-in 0.6s var(--ease) both;
+}
+
+.badge__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: conic-gradient(var(--flag-gold) 0deg 90deg, var(--flag-red) 90deg 180deg, var(--flag-gold) 180deg 270deg, var(--flag-red) 270deg 360deg);
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 9.5vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  color: var(--foam);
+  margin: 0.3em 0 0;
+  animation: rise-in 0.7s var(--ease) 0.12s both;
+}
+
+.swell-line {
+  width: clamp(160px, 25vw, 240px);
+  height: auto;
+  margin: 0.6em 0;
+  animation: rise-in 0.5s var(--ease) 0.3s both;
+}
+
+.swell-line path {
+  fill: none;
+  stroke: var(--flag-gold);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: draw-line 1.4s ease-out 0.6s forwards;
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--foam);
+  max-width: 32ch;
+  margin: 0.9em 0 1.6em;
+  animation: rise-in 0.6s var(--ease) 0.5s both;
+}
+
+/* ---------------------------------------------------------------- */
+/* Signup form                                                       */
+/* ---------------------------------------------------------------- */
+
+.signup {
+  width: 100%;
+  max-width: 420px;
+  animation: rise-in 0.6s var(--ease) 0.85s both;
+}
+
+.signup__label {
+  font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+  letter-spacing: 0.04em;
+  color: var(--sand);
+  margin: 0 0 0.8em;
+}
+
+.signup__fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+}
+
+.signup__fields input {
+  flex: 1 1 160px;
+  min-width: 0;
+  padding: 0.85em 0.2em;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(237, 230, 214, 0.4);
+  color: var(--foam);
+  font-family: var(--font-utility);
+  font-size: 0.95rem;
+}
+
+.signup__fields input::placeholder {
+  color: rgba(237, 230, 214, 0.55);
+}
+
+.signup__fields input:focus {
+  border-bottom-color: var(--flag-gold);
+}
+
+.signup__fields button {
+  flex: 1 1 100%;
+  margin-top: 0.4em;
+  padding: 0.85em 1.4em;
+  background: var(--flag-gold);
+  color: var(--teal-ink);
+  border: none;
+  border-radius: 2px;
+  font-family: var(--font-utility);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: transform 0.15s var(--ease), background 0.15s var(--ease);
+}
+
+.signup__fields button:hover { background: #e6b659; }
+.signup__fields button:active { transform: scale(0.97); }
+.signup__fields button:disabled { opacity: 0.6; cursor: default; }
+
+.signup__note {
+  font-size: 0.75rem;
+  color: var(--sand);
+  margin: 0.7em 0 0;
+}
+
+.signup__status {
+  font-size: 0.8rem;
+  color: var(--flag-gold);
+  margin: 0.6em 0 0;
+  min-height: 1.2em;
+}
+
+/* ---------------------------------------------------------------- */
+/* Socials + footer                                                  */
+/* ---------------------------------------------------------------- */
+
+.socials {
+  display: flex;
+  gap: 1.2em;
+  margin-top: 1.8em;
+  animation: rise-in 0.6s var(--ease) 1s both;
+}
+
+.socials svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--foam);
+  stroke-width: 1.4;
+  transition: stroke 0.15s var(--ease);
+}
+
+.socials a:hover svg,
+.socials a:focus-visible svg { stroke: var(--flag-gold); }
+
+.site-footer {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  text-align: center;
+  padding: 1.2em 1em calc(1.2em + env(safe-area-inset-bottom));
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: rgba(201, 184, 150, 0.7);
+}
+
+.site-footer p { margin: 0; }
+
+/* ---------------------------------------------------------------- */
+/* Motion                                                             */
+/* ---------------------------------------------------------------- */
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge, .headline, .swell-line, .tagline, .signup, .socials {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .swell-line path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Desktop / wider screens                                           */
+/* ---------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Just let the submit button sit inline next to the inputs once
+     there's enough room, instead of stacking full-width below them. */
+  .signup__fields button { flex: 0 0 auto; margin-top: 0; }
+  .signup__fields { align-items: center; }
+}

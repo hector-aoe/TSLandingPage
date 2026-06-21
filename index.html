@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Spot | Coming Soon</title>
+  <meta name="description" content="The Spot — surfwear built on salt, sun, and second-hand boards. Launching soon at thespot1982.store.">
+
+  <!-- Social preview tags (used when this link is shared before launch) -->
+  <meta property="og:title" content="The Spot | Coming Soon">
+  <meta property="og:description" content="Surfwear.">
+  <meta property="og:type" content="website">
+
+  <meta name="theme-color" content="#1E3733">
+  <link rel="icon" type="image/svg+xml" href="palm.svg">
+
+  <!-- Fonts: Fraunces (headline), PT Serif (tagline), Oswald (labels/utility) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Oswald:wght@400;500;600&family=PT+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Full-bleed background layers: video, vignette scrim, grain texture -->
+  <video class="bg-video" muted loop playsinline autoplay aria-hidden="true">
+    <!-- Sources are added by script.js, picked by screen size -->
+  </video>
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main class="hero">
+
+    <div class="badge">
+      <span>EST.</span>
+      <span>1982</span>
+    </div>
+
+    <h1 class="headline">Coming back soon</h1>
+
+    <svg class="swell-line" viewBox="0 0 280 32" aria-hidden="true">
+      <path d="M4,16 C24,0 44,0 64,16 C84,32 104,32 124,16 C144,0 164,0 184,16 C204,32 224,32 244,16 C254,8 264,4 274,2" />
+    </svg>
+
+    <p class="tagline">Surfwear born in Mauritius, driven by the lifestyle.</p>
+
+    <form class="signup" id="signupForm" novalidate>
+      <p class="signup__label">Be first when the doors open.</p>
+
+      <div class="signup__fields">
+        <label class="visually-hidden" for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+
+        <label class="visually-hidden" for="phone">Mobile number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Mobile number (optional)" autocomplete="tel">
+
+        <button type="submit">Save My Spot</button>
+      </div>
+
+      <p class="signup__note">No spam. Just the drop date.</p>
+      <p class="signup__status" id="signupStatus" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="socials">
+      <a href="https://www.instagram.com/thespot1982/" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+      </a>
+      <span>thespot1982</span>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 The Spot Surfwear, Ltd · thespot1982.store</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
