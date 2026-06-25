@@ -124,10 +124,12 @@ Everything lives at the top of `style.css` in `:root`. Change a hex
 value there and it updates everywhere it's used:
 
 ```css
---teal-deep:  #1E3733;  /* dominant background tone */
---flag-gold:  #D9A441;  /* buttons, accents, focus ring */
---flag-red:   #B23A2E;  /* secondary accent */
---foam:       #EDE6D6;  /* main text color */
+--kelp-deep:        #024B00;  /* grounding dark green / background */
+  --surf-blue:        #488AFF;  /* bold electric blue accent */
+  --pineapple-yellow: #F6DA0E;  /* high-energy neon yellow */
+  --pastel-coastal:   #A3CFF7;  /* light coastal blue */
+  --citrus-pink:      #EFBAF5;  /* soft neon pink accent */
+  --sunset-orange:    #FF5926;  /* high-visibility neon orange */
 ```
 
 ## 6. Deploy it to thespot1982.store (GitHub Pages)
