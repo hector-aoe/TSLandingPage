@@ -5,13 +5,13 @@
    ==================================================================== */
 
 :root {
-  /* --- Color: faded lifeguard-flag palette, deep ocean scrim --- */
-  --teal-deep:   #1E3733;  /* dominant dark scrim / background */
-  --teal-ink:    #9A5D2D;  /* near-black text on light surfaces */
-  --foam:        #F9DCCB;  /* cream/foam — primary text on dark */
-  --sand:        #F8EC88;  /* secondary text, hairlines */
-  --flag-red:    #E68DF0;  /* faded flag red — accent */
-  --flag-gold:   #72ACF8;  /* faded flag gold — accent, focus ring */
+  /* --- Brand palette: vibrant coastal and retro surf tones --- */
+  --kelp-deep:        #024B00;  /* grounding dark green / background */
+  --surf-blue:        #488AFF;  /* bold electric blue accent */
+  --pineapple-yellow: #F6DA0E;  /* high-energy neon yellow */
+  --pastel-coastal:   #A3CFF7;  /* light coastal blue */
+  --citrus-pink:      #EFBAF5;  /* soft neon pink accent */
+  --sunset-orange:    #FF5926;  /* high-visibility neon orange */
 
   /* --- Type: 3 roles, used with restraint --- */
   --font-display: "Fraunces", Georgia, serif;       /* headline only */
@@ -38,8 +38,8 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: var(--teal-deep);
-  color: var(--foam);
+  background: var(--kelp-deep);
+  color: var(--pineapple-yellow);
   font-family: var(--font-utility);
   overflow-x: hidden;
 }
@@ -55,7 +55,7 @@ button {
 
 /* Visible, on-brand focus ring for keyboard users */
 :focus-visible {
-  outline: 2px solid var(--flag-gold);
+  outline: 2px solid var(--pineapple-yellow);
   outline-offset: 3px;
 }
 
@@ -88,7 +88,7 @@ button {
    person prefers reduced motion / reduced data */
 body.no-video .bg-video { display: none; }
 body.no-video {
-  background: linear-gradient(160deg, #234540 0%, #1A332E 55%, #0F2421 100%);
+  background: linear-gradient(160deg, var(--kelp-deep) 0%, var(--surf-blue) 55%, var(--kelp-deep) 100%);
 }
 
 .scrim {
@@ -134,7 +134,7 @@ body.no-video {
   gap: 0.5em;
   font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   letter-spacing: 0.18em;
-  color: var(--sand);
+  color: var(--pastel-coastal);
   animation: rise-in 0.6s var(--ease) both;
 }
 
@@ -142,7 +142,7 @@ body.no-video {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: conic-gradient(var(--flag-gold) 0deg 90deg, var(--flag-red) 90deg 180deg, var(--flag-gold) 180deg 270deg, var(--flag-red) 270deg 360deg);
+  background: conic-gradient(var(--pineapple-yellow) 0deg 90deg, var(--sunset-orange) 90deg 180deg, var(--pineapple-yellow) 180deg 270deg, var(--sunset-orange) 270deg 360deg);
 }
 
 .headline {
@@ -151,7 +151,7 @@ body.no-video {
   font-size: clamp(2.5rem, 9.5vw, 5.5rem);
   line-height: 0.98;
   letter-spacing: -0.01em;
-  color: var(--foam);
+  color: var(--pineapple-yellow);
   margin: 0.3em 0 0;
   animation: rise-in 0.7s var(--ease) 0.12s both;
 }
@@ -165,7 +165,7 @@ body.no-video {
 
 .swell-line path {
   fill: none;
-  stroke: var(--flag-gold);
+  stroke: var(--surf-blue);
   stroke-width: 2.5;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -178,7 +178,7 @@ body.no-video {
   font-family: var(--font-body);
   font-style: italic;
   font-size: clamp(1rem, 2vw, 1.2rem);
-  color: var(--foam);
+  color: var(--pineapple-yellow);
   max-width: 32ch;
   margin: 0.9em 0 1.6em;
   animation: rise-in 0.6s var(--ease) 0.5s both;
@@ -197,7 +197,7 @@ body.no-video {
 .signup__label {
   font-size: clamp(0.8rem, 1.4vw, 0.9rem);
   letter-spacing: 0.04em;
-  color: var(--sand);
+  color: var(--pastel-coastal);
   margin: 0 0 0.8em;
 }
 
@@ -213,26 +213,26 @@ body.no-video {
   padding: 0.85em 0.2em;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(237, 230, 214, 0.4);
-  color: var(--foam);
+  border-bottom: 1px solid rgba(163, 207, 247, 0.4);
+  color: var(--pineapple-yellow);
   font-family: var(--font-utility);
   font-size: 0.95rem;
 }
 
 .signup__fields input::placeholder {
-  color: rgba(237, 230, 214, 0.55);
+  color: rgba(246, 218, 14, 0.55);
 }
 
 .signup__fields input:focus {
-  border-bottom-color: var(--flag-gold);
+  border-bottom-color: var(--sunset-orange);
 }
 
 .signup__fields button {
   flex: 1 1 100%;
   margin-top: 0.4em;
   padding: 0.85em 1.4em;
-  background: var(--flag-gold);
-  color: var(--teal-ink);
+  background: var(--sunset-orange);
+  color: var(--kelp-deep);
   border: none;
   border-radius: 2px;
   font-family: var(--font-utility);
@@ -243,19 +243,19 @@ body.no-video {
   transition: transform 0.15s var(--ease), background 0.15s var(--ease);
 }
 
-.signup__fields button:hover { background: #e6b659; }
+.signup__fields button:hover { background: var(--pineapple-yellow); color: var(--kelp-deep); }
 .signup__fields button:active { transform: scale(0.97); }
 .signup__fields button:disabled { opacity: 0.6; cursor: default; }
 
 .signup__note {
   font-size: 0.75rem;
-  color: var(--sand);
+  color: var(--pastel-coastal);
   margin: 0.7em 0 0;
 }
 
 .signup__status {
   font-size: 0.8rem;
-  color: var(--flag-gold);
+  color: var(--sunset-orange);
   margin: 0.6em 0 0;
   min-height: 1.2em;
 }
@@ -275,13 +275,13 @@ body.no-video {
   width: 22px;
   height: 22px;
   fill: none;
-  stroke: var(--foam);
+  stroke: var(--pineapple-yellow);
   stroke-width: 1.4;
   transition: stroke 0.15s var(--ease);
 }
 
 .socials a:hover svg,
-.socials a:focus-visible svg { stroke: var(--flag-gold); }
+.socials a:focus-visible svg { stroke: var(--pineapple-yellow); }
 
 .site-footer {
   position: relative;
@@ -291,7 +291,7 @@ body.no-video {
   padding: 1.2em 1em calc(1.2em + env(safe-area-inset-bottom));
   font-size: 0.72rem;
   letter-spacing: 0.04em;
-  color: rgba(201, 184, 150, 0.7);
+  color: rgba(163, 207, 247, 0.75);
 }
 
 .site-footer p { margin: 0; }
